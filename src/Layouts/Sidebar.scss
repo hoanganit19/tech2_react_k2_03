@@ -1,0 +1,18 @@
+.primary-menu{
+    ul{
+        li{
+            border-bottom: 1px solid #efefef;
+            a{
+                color: #333;
+                text-decoration: none;
+                padding: 7px 0;
+                display: block;
+                &.current-item{
+                    font-weight: bold;
+                }
+            }
+
+
+        }
+    }
+}
