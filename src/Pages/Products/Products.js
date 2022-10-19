@@ -6,42 +6,59 @@ export class Products extends Component {
     super(props);
     this.state = {
       keyword: "",
+      status: "all",
     };
   }
 
   handleSearch = (e) => {
     e.preventDefault();
-    const { keyword } = this.state;
+    const { keyword, status } = this.state;
 
     const [searchParams, setSearchParams] = this.props.search;
-    setSearchParams({
-      keyword: keyword,
-    });
+
+    const search = {};
+
+    if (keyword !== "") {
+      search.keyword = keyword;
+    }
+
+    if (status !== "all") {
+      search.status = status;
+    }
+
+    setSearchParams(search);
   };
 
   handleChangeValue = (e) => {
-    this.setState({
-      keyword: e.target.value,
-    });
+    const filters = { ...this.state };
+
+    filters[e.target.name] = e.target.value;
+
+    this.setState(filters);
   };
 
   componentDidMount = () => {
     const [searchParams] = this.props.search;
     this.setState({
       keyword: searchParams.get("keyword") ? searchParams.get("keyword") : "",
+      status: searchParams.get("status"),
     });
   };
 
   render() {
-    const { keyword } = this.state;
+    const { keyword, status } = this.state;
 
     return (
       <>
         <form onSubmit={this.handleSearch}>
-          <select name="status">
-            <option value={'all'}>Tất cả trạng thái</option>
-            <option value={'active'}>Kích hoạt</option>
-            <option value={'inactive'}>Chưa kích hoạt</option>
+          <select
+            name="status"
+            value={status}
+            onChange={this.handleChangeValue}
+          >
+            <option value={"all"}>Tất cả trạng thái</option>
+            <option value={"active"}>Kích hoạt</option>
+            <option value={"inactive"}>Chưa kích hoạt</option>
           </select>
           <input
             type="search"

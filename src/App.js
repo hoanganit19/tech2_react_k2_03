@@ -11,6 +11,8 @@ import Profile from './Pages/Profile/Profile';
 import Orders from './Pages/Orders/Orders';
 import Sidebar from './Layouts/Sidebar';
 import Url from './Helpers/Url';
+import Checkout from './Pages/Checkout/Checkout';
+import Thankyou from './Pages/Checkout/Thankyou';
 
 const url = new Url();
 
@@ -43,6 +45,9 @@ function App() {
           <Route path='/ca-nhan' element={<Profile />}/>
           <Route path='/don-hang' element={<Orders />}/>
         </Route>
+
+        <Route path='/thanh-toan' element={<Checkout />}/>
+        <Route path='/cam-on' element={<Thankyou />}/>
         
         <Route path='*' element={<Errors />}/>
       </Routes>

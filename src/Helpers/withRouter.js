@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 
 const withRouter = (ParentComponent) => (props) => {
     
@@ -7,7 +7,9 @@ const withRouter = (ParentComponent) => (props) => {
 
     const searchParams = useSearchParams();  //array
 
-    return <ParentComponent {...props} params={params} search={searchParams} />;
+    const navigate = useNavigate();
+
+    return <ParentComponent {...props} params={params} search={searchParams} navigate={navigate}/>;
 }
 
 export default withRouter;
